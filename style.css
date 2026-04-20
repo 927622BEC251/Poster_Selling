@@ -1,0 +1,213 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 30px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #00ffd5;
+}
+
+/* Container */
+.container {
+  padding: 30px;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 25px;
+}
+
+/* Card */
+.card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* Poster */
+.poster {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.card:hover .poster img {
+  transform: scale(1.1);
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.quote-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  line-height: 1.5;
+  
+  color: #ffffff;
+  text-align: center;
+  padding: 0 15px;
+  
+  text-shadow: 0 3px 12px rgba(0,0,0,0.9);
+}
+
+/* Price */
+.card p {
+  text-align: center;
+  margin: 10px 0;
+  font-weight: 600;
+  color: #00ffd5;
+}
+
+/* Button */
+button {
+  width: 90%;
+  margin: 10px auto 15px;
+  display: block;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #00ffd5, #00bfff);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #00bfff, #00ffd5);
+}
+
+/* Cart */
+.cart {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 320px;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  padding: 20px;
+  overflow-y: auto;
+  color: white;
+}
+
+.cart h3 {
+  border-bottom: 1px solid gray;
+  padding-bottom: 10px;
+}
+
+.cart li {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #00ffd5;
+  border-radius: 10px;
+}
+#cartFrameContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100%;
+  background: black;
+  z-index: 999;
+}
+
+#cartFrame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Overlay background */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  z-index: 998;
+}
+
+/* Iframe cart */
+#cartFrameContainer {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background: black;
+  z-index: 999;
+  transition: 0.3s;
+}
+
+#cartFrame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

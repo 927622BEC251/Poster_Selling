@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Portrait Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    
+  <h1>Portrait Store</h1>
+</header>
+<!-- Overlay + Iframe -->
+<div id="overlay" onclick="closeCart()"></div>
+
+<div id="cartFrameContainer">
+  <iframe id="cartFrame" src="cart.html"></iframe>
+</div>
+
+<nav>
+  <div>
+    <a href="#">Home</a>
+    <a href="#">Gallery</a>
+  </div>
+  <div>
+    <a href="#" onclick="toggleCart()">Cart</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Portrait Photos</h2>
+  <div class="grid" id="photoList"></div>
+</div>
+
+<div class="cart" id="cart" style="display:none;">
+  <h3>Your Cart</h3>
+  <ul id="cartItems"></ul>
+  <h4 id="total"></h4>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

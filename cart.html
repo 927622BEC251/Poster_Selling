@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h2 style="text-align:center;">Your Cart</h2>
+</header>
+
+<div class="container">
+  <div id="cartList"></div>
+  <h3 id="total"></h3>
+
+  <button onclick="submitOrder()" style="margin-top:20px;">
+    Submit Order
+  </button>
+</div>
+
+<script>
+function loadCart() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const list = document.getElementById("cartList");
+  const totalEl = document.getElementById("total");
+
+  list.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    list.innerHTML += `
+      <div class="card">
+        <div class="poster" style="height:200px;">
+          <img src="${item.img}" style="width:100%;height:100%;object-fit:cover;">
+          <div class="overlay"></div>
+          <div class="quote-text">${item.quote}</div>
+        </div>
+        <p>₹${item.price}</p>
+        <button onclick="removeItem(${index})">Remove</button>
+      </div>
+    `;
+  });
+
+  totalEl.innerText = "Total: ₹" + total;
+}
+
+function removeItem(index) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.splice(index, 1);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  loadCart();
+}
+
+function submitOrder() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  if (cart.length === 0) {
+    alert("Cart is empty!");
+    return;
+  }
+
+  // Create order object
+  const order = {
+    id: "ORD" + Math.floor(Math.random() * 100000),
+    items: cart,
+    date: new Date().toLocaleString(),
+    deliveryDate: getDeliveryDate(),
+    status: "Processing"
+  };
+
+  // Save order
+  localStorage.setItem("order", JSON.stringify(order));
+
+  // Clear cart
+  localStorage.removeItem("cart");
+
+  // Redirect to order page
+  window.location.href = "order.html";
+}
+
+function getDeliveryDate() {
+  const date = new Date();
+  date.setDate(date.getDate() + 5);
+  return date.toDateString();
+}
+
+// Load cart on page load
+loadCart();
+</script>
+
+</body>
+</html>

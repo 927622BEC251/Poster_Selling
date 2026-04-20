@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Tracking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Order Confirmation</h1>
+</header>
+
+<div class="container">
+  <h2 id="orderId"></h2>
+  <p id="orderDate"></p>
+  <p id="deliveryDate"></p>
+
+  <h3>Status: <span id="status"></span></h3>
+
+  <!-- Timeline -->
+  <div style="margin:20px 0;">
+    <p>✔ Order Placed</p>
+    <p id="ship">⏳ Shipped</p>
+    <p id="out">⏳ Out for Delivery</p>
+    <p id="delivered">⏳ Delivered</p>
+  </div>
+
+  <h3>Ordered Posters</h3>
+  <div class="grid" id="orderItems"></div>
+</div>
+
+<script>
+function loadOrder() {
+  const order = JSON.parse(localStorage.getItem("order"));
+
+  if (!order) {
+    document.body.innerHTML = "<h2>No order found</h2>";
+    return;
+  }
+
+  document.getElementById("orderId").innerText = "Order ID: " + order.id;
+  document.getElementById("orderDate").innerText = "Ordered on: " + order.date;
+  document.getElementById("deliveryDate").innerText =
+    "Estimated Delivery: " + order.deliveryDate;
+
+  document.getElementById("status").innerText = order.status;
+
+  const list = document.getElementById("orderItems");
+
+  order.items.forEach(item => {
+    list.innerHTML += `
+      <div class="card">
+        <div class="poster" style="height:200px;">
+          <img src="${item.img}" style="width:100%;height:100%;object-fit:cover;">
+          <div class="overlay"></div>
+          <div class="quote-text">${item.quote}</div>
+        </div>
+        <p>₹${item.price}</p>
+      </div>
+    `;
+  });
+
+  simulateTracking();
+}
+
+function simulateTracking() {
+  setTimeout(() => {
+    document.getElementById("ship").innerText = "✔ Shipped";
+  }, 2000);
+
+  setTimeout(() => {
+    document.getElementById("out").innerText = "✔ Out for Delivery";
+  }, 4000);
+
+  setTimeout(() => {
+    document.getElementById("delivered").innerText = "✔ Delivered";
+    document.getElementById("status").innerText = "Delivered";
+  }, 6000);
+}
+
+loadOrder();
+</script>
+
+</body>
+</html>
